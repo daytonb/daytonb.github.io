@@ -16,7 +16,7 @@ Hopefully someone else out on the Internet will find my posts useful.
 <ul>
   {% for post in site.posts %}
     <li>
-      <a hfref="{{ post.url }}">{{ post.title }}</a>
+      <a href="{{ post.url }}">{{ post.title }}</a>
     </li>
   {% endfor %}
 </ul>
