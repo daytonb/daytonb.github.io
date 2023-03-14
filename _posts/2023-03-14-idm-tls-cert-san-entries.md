@@ -40,7 +40,7 @@ For the example steps below, we'll assume the following:
 5. On the commandline of `webservicehost.airgapped.example` run the following command and arguments:
    * `sudo ipa-getcert request \`
    * `-k /etc/pki/tls/certs/https-internalwebapp1.airgapped.example.key \`
-   * `-k /etc/pki/tls/certs/https-internalwebapp1.airgapped.example.pem \`
+   * `-f /etc/pki/tls/certs/https-internalwebapp1.airgapped.example.pem \`
       * certmonger needs specific SELinux labels on the key and certificate files. The appropriate labels already exist in `/etc/pki/tls/certs/`, so this is the directory I chose for these files.
    * `-G RSA -g 4096 \`
       * Our cert will have a 4096 bit RSA key pair
@@ -54,6 +54,18 @@ For the example steps below, we'll assume the following:
       * Verbose output for the `ipa-cert request` command
    * `-w \`
       * Wait for the request to complete before returning user to the command prompt.
+   * In summary that whole command is:
+      ```
+      sudo ipa-getcert request \
+         -k /etc/pki/tls/certs/https-internalwebapp1.airgapped.example.key \
+         -f /etc/pki/tls/certs/https-internalwebapp1.airgapped.example.pem \
+         -G RSA -g 4096 \
+         -K HTTP/webservicehost.airgapped.example \
+         -D internalwebapp1.airgapped.example \
+         -I internalwebapp1 \
+         -v \
+         -w
+      ```
 
 All that remains now is to ensure that there's a DNS entry so computers on the airgapped network know where `internalwebapp1.airgapped.example` is. If the web app has the same IP address as the web server host, then this would be a CNAME record to point to the host's A record. If the web app has its own IP address, the this would just be an A record of its own.
 
