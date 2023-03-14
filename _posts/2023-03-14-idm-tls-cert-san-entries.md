@@ -23,10 +23,16 @@ This has some of the elements of the solution I was seeking, but has a few aspec
 
 We will use certmonger to manage the TLS certificates with SubjectAltName (SAN) entries  for the webservices which will be signed by the IdM certificate authority (CA).
 
+
+## Assumptions for This Example
+
 For the example steps below, we'll assume the following:
 * The host for the webservices is named `webservicehost.airgapped.example`
 * We want to get a TLS cert for the service `internalwebapp1.airgapped.example`
 * This example happened to be tested using an IdM server running on a Rocky Linux 8 with the webservices host running CentOS 7.
+
+
+## Actions to Implement the Solution
 
 1. Logged into the IdM web interface as an IdM admin, go to _Identity_ > _Services_ and click on _Add_.
 2. In the _Add service_ window that pops up:
@@ -67,5 +73,10 @@ For the example steps below, we'll assume the following:
          -w
       ```
 
-All that remains now is to ensure that there's a DNS entry so computers on the airgapped network know where `internalwebapp1.airgapped.example` is. If the web app has the same IP address as the web server host, then this would be a CNAME record to point to the host's A record. If the web app has its own IP address, the this would just be an A record of its own.
+# Using The Certs
+
+I won't covert these details since they're more specific to the app and the IP configurations, but now that we have the certs, we need to configure the app to know where the certificate and key files are.
+We also have to ensure that there's a DNS entry for the web apps hostnme so computers on the airgapped network can find the IP address for `internalwebapp1.airgapped.example`.
+If the web app has the same IP address as the web server host, then this would be a CNAME record to point to the host's A record.
+If the web app has its own IP address, the this would just be an A record of its own.
 
