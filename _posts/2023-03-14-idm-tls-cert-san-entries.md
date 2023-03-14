@@ -75,8 +75,8 @@ For the example steps below, we'll assume the following:
 
 # Using The Certs
 
-I won't covert these details since they're more specific to the app and the IP configurations, but now that we have the certs, we need to configure the app to know where the certificate and key files are.
-We also have to ensure that there's a DNS entry for the web apps hostnme so computers on the airgapped network can find the IP address for `internalwebapp1.airgapped.example`.
+I won't cover these details since they're more specific to the app and the IP configurations, but now that we have the certs, we need to configure the app to know where the certificate and key files are.
+We also have to ensure that there's a DNS entry for the web apps hostname so computers on the airgapped network can find the IP address for `internalwebapp1.airgapped.example`.
 If the web app has the same IP address as the web server host, then this would be a CNAME record to point to the host's A record.
 If the web app has its own IP address, the this would just be an A record of its own.
 
