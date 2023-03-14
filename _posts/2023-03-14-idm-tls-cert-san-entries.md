@@ -52,7 +52,7 @@ For the example steps below, we'll assume the following:
       * a nickname for the certmonger request
    * `-v \`
       * Verbose output for the `ipa-cert request` command
-   * `-w \`
+   * `-w`
       * Wait for the request to complete before returning user to the command prompt.
    * In summary that whole command is:
       ```
