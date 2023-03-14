@@ -3,8 +3,9 @@ layout: post
 title: Getting TLS Certs for Services Running on IdM / FreeIPA Clients
 ---
 
+# Getting TLS Certs for Services Running on IdM / FreeIPA Clients
 
-# Problem Description
+## Problem Description
 
 I have a set of Linux machines in an Identity Management (aka IdM or FreeIPA) domain.
 On one of the clients I want to run multiple webservices with TLS certificates
@@ -12,7 +13,7 @@ These certificates should be trusted by all members of the IdM doamin and automa
 The entire IdM domain is air-gapped from the Internet, so Let's Encrypt is not really a viable solution.
 
 
-# Related Materials
+## Related Materials
 
 When I was trying to figure out how to accomplish this task I came across a blog titles "Generate certificate with SubjectAltName attributes in FreeIPA".
 This has some of the elements of the solution I was seeking, but has a few aspects I did not like:
@@ -20,12 +21,12 @@ This has some of the elements of the solution I was seeking, but has a few aspec
 2. That solution generates a Certificate Signing Request (CSR) using openssl which means that we'll have to remember to generate a new certificate when the old one expires.
 
 
-# Solution
+## Solution
 
 We will use certmonger to manage the TLS certificates with SubjectAltName (SAN) entries  for the webservices which will be signed by the IdM certificate authority (CA).
 
 
-## Assumptions for This Example
+### Assumptions for This Example
 
 For the example steps below, we'll assume the following:
 * The host for the webservices is named `webservicehost.airgapped.example`
@@ -33,7 +34,7 @@ For the example steps below, we'll assume the following:
 * This example happened to be tested using an IdM server running on a Rocky Linux 8 with the webservices host running CentOS 7.
 
 
-## Actions to Implement the Solution
+### Actions to Implement the Solution
 
 1. Logged into the IdM web interface as an IdM admin, go to _Identity_ > _Services_ and click on _Add_.
 2. In the _Add service_ window that pops up:
@@ -75,7 +76,7 @@ For the example steps below, we'll assume the following:
       ```
 
 
-# Using The Certs
+## Using The Certs
 
 I won't cover these details since they're more specific to the app and the IP configurations, but now that we have the certs, we need to configure the app to know where the certificate and key files are.
 We also have to ensure that there's a DNS entry for the web apps hostname so computers on the airgapped network can find the IP address for `internalwebapp1.airgapped.example`.
