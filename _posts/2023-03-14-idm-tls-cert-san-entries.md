@@ -47,7 +47,7 @@ For the example steps below, we'll assume the following:
    * _New kerberos pricipal alias_: `HTTP/internalwebapp1.airgapped.example`
 5. On the commandline of `webservicehost.airgapped.example` run the following command and arguments:
    * `sudo ipa-getcert request \`
-   * `-k /etc/pki/tls/certs/https-internalwebapp1.airgapped.example.key \`
+   * `-k /etc/pki/tls/private/https-internalwebapp1.airgapped.example.key \`
    * `-f /etc/pki/tls/certs/https-internalwebapp1.airgapped.example.pem \`
       * certmonger needs specific SELinux labels on the key and certificate files. The appropriate labels already exist in `/etc/pki/tls/certs/`, so this is the directory I chose for these files.
    * `-G RSA -g 4096 \`
@@ -65,7 +65,7 @@ For the example steps below, we'll assume the following:
    * In summary that whole command is:
       ```
       sudo ipa-getcert request \
-         -k /etc/pki/tls/certs/https-internalwebapp1.airgapped.example.key \
+         -k /etc/pki/tls/private/https-internalwebapp1.airgapped.example.key \
          -f /etc/pki/tls/certs/https-internalwebapp1.airgapped.example.pem \
          -G RSA -g 4096 \
          -K HTTP/webservicehost.airgapped.example \
